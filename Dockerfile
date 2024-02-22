@@ -9,4 +9,4 @@ RUN npm install -g nodemon
 
 EXPOSE 3001
 
-CMD [ "npm", "run", "dev:server" ]
+CMD [ "npm", "run", "dev:server", "&&", "npm", "run", "populate-db"]
