@@ -1,19 +1,10 @@
 version: '3'
 
 services:
-  # Node.js application service
+  # Node.js Application
   app:
     build:
       context: .
-    develop:
-      watch:
-        - action: sync
-          path: ./server
-          target: ./server
-          ignore:
-            - node_modules/
-        - action: rebuild
-          path: ./server
     ports:
       - "3001:3001"
     depends_on:
@@ -21,7 +12,7 @@ services:
     environment:
       DATABASE_URL: "mongodb://mongo/argentBankDB"  # Use the service name 'mongo' as the hostname
 
-  # MongoDB service
+  # MongoDB
   mongo:
     image: mongo
     user: '502:502'
