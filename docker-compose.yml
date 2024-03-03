@@ -4,15 +4,6 @@ services:
   app:
     build:
       context: .
-    develop:
-      watch:
-        - action: sync
-          path: ./server
-          target: ./server
-          ignore:
-            - node_modules/
-        - action: rebuild
-          path: ./server
     ports:
       - "3001:3001"
     depends_on:
