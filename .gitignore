@@ -37,3 +37,5 @@ config/runtime.yaml
 data/*
 
 .DS_Store
+app/.gitignore
+app/.DS_Store
