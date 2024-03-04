@@ -34,6 +34,11 @@ if (process.env.NODE_ENV !== 'production') {
 // Serve static files
 app.use(express.static(ROOT_PATH))
 
+// Handle all routes by serving the index.html file
+app.get('*', (req, res) => {
+  res.sendFile(path.join(ROOT_PATH, 'index.html'))
+});
+
 app.listen(PORT, () => {
   console.log(`Server listening on http://localhost:${PORT}`)
   console.log('serve files from: ', ROOT_PATH)
