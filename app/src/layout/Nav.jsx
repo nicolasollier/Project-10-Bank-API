@@ -1,4 +1,4 @@
-import logo from "../../img/argentBankLogo.png";
+import logo from "../img/argentBankLogo.png";
 
 const Nav = () => {
   return (

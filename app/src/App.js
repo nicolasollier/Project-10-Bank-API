@@ -1,10 +1,17 @@
-import Nav from "./components/layout/Nav";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Layout from "./layout/Layout";
+import Index from "./views/Index";
 
 function App() {
   return (
-    <div className="App">
-      <Nav />
-    </div>
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Index />} />
+        </Routes>
+      </Layout>
+    </Router>
   );
 }
 
