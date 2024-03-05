@@ -1,5 +1,8 @@
+//dependencies
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+//views
 import Layout from "./layout/Layout";
 import Index from "./views/Index";
 import Signin from "./views/Signin";
@@ -12,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/signin" element={<Signin />} />
+          <Route path="/profile" element={<h1>Profile</h1>} />
           <Route path="*" element={<NotFound />}/>
         </Routes>
       </Layout>
