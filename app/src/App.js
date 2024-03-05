@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Layout from "./layout/Layout";
 import Index from "./views/Index";
 import Signin from "./views/Signin";
+import NotFound from "./views/NotFound";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/signin" element={<Signin />} />
+          <Route path="*" element={<NotFound />}/>
         </Routes>
       </Layout>
     </Router>
