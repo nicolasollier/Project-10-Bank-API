@@ -7,7 +7,18 @@ const ProfilePage = () => {
   const dispatch = useDispatch();
   const profileData = useSelector(state => state.profile.profileData);
   const accounts = useSelector(state => state.profile.accounts);
+
+  const [editMode, setEditMode] = useState(false);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    if (profileData) {
+      setFirstName(profileData.firstName);
+      setLastName(profileData.lastName);
+    }
+  }, [profileData]);
 
   useEffect(() => {
     const fetchProfileData = async () => {
@@ -31,6 +42,22 @@ const ProfilePage = () => {
     fetchProfileData();
   }, [dispatch]);
 
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.put('/api/v1/user/profile', { firstName, lastName }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      dispatch(setProfileData(response.data.body));
+      setEditMode(false);
+    } catch (error) {
+      setError('Failed to update profile. Please try again.');
+    }
+  };
+
   if (error) {
     return <div>Error: {error}</div>;
   }
@@ -42,10 +69,30 @@ const ProfilePage = () => {
   return (
     <main className="main bg-dark">
       <div className="header">
-        <h1>Welcome back<br />{profileData.firstName} {profileData.lastName}!</h1>
-        <button className="edit-button">Edit Name</button>
+        {editMode ? (
+          <form onSubmit={handleEditSubmit}>
+            <h1>Edit your firstname and lastname:</h1>
+            <input
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+            <input
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
+            <button type="submit">Save</button>
+            <button onClick={() => setEditMode(false)}>Cancel</button>
+          </form>
+        ) : (
+          <>
+            <h1>Welcome back<br />{profileData.firstName} {profileData.lastName}!</h1>
+            <button className="edit-button" onClick={() => setEditMode(true)}>Edit Name</button>
+          </>
+        )}
       </div>
-      <h2 className="sr-only">Accounts</h2>
+
       {accounts.map((account) => (
         <section className="account" key={account.id}>
           <div className="account-content-wrapper">
@@ -65,3 +112,4 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
+
