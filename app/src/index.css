@@ -59,8 +59,17 @@ body {
 }
 
 .main-nav-item {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
   text-decoration: none;
   margin-right: 0.5rem;
+}
+
+#main-nav-item-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .main-nav-item:hover {
