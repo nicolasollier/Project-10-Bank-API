@@ -1,10 +1,20 @@
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../reducers/authReducer';
 import logo from "../img/argentBankLogo.png";
-import { useSelector } from 'react-redux';
 
 const Nav = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const profileData = useSelector(state => state.profile.profileData);
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+
+  const handleSignout = () => {
+    localStorage.removeItem('token');
+    
+    dispatch(logout());
+    navigate('/signin');
+  }
 
   return (
     <nav className="main-nav">
@@ -24,10 +34,10 @@ const Nav = () => {
             {profileData ? profileData.firstName : 'Profile'}
           </Link>
 
-          <Link className="main-nav-item" to="/signout">
+          <a className="main-nav-item" onClick={handleSignout}>
             <i className="fa fa-sign-out"></i>
             Sign Out
-          </Link>
+          </a>
         </div>
       ) : (
         <div>

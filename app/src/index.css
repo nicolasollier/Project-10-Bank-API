@@ -51,6 +51,7 @@ body {
 
 .main-nav a {
   font-weight: bold;
+  cursor: pointer;
   color: #2c3e50;
 }
 
