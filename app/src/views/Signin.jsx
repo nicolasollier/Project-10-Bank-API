@@ -14,7 +14,7 @@ const Signin = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('/api/v1/user/login', { email: username, password });
+      const response = await axios.post('http://localhost:3001/api/v1/user/login', { email: username, password });
       const { body: { user, token } } = response.data;
 
       dispatch(login({ user, token }));
