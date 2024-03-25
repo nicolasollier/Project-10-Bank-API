@@ -4,10 +4,10 @@ import { logout } from '../reducers/authReducer';
 import logo from "../img/argentBankLogo.png";
 
 const Nav = () => {
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const profileData = useSelector(state => state.profile.profileData);
-  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
   const handleSignout = () => {
     localStorage.removeItem('token');
@@ -27,7 +27,7 @@ const Nav = () => {
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
 
-      {isAuthenticated ? (
+      {token ? (
         <div id="main-nav-item-wrapper">
           <Link className="main-nav-item" to="/profile">
             <i className="fa fa-user"></i>
@@ -43,7 +43,7 @@ const Nav = () => {
         <div>
           <Link className="main-nav-item" to="/signin">
             <i className="fa fa-user"></i>
-            Sign In (rebuild success)
+            Sign In
           </Link>
         </div>
       )}
