@@ -28,7 +28,7 @@ const ProfilePage = () => {
           setError('No token found. Please login.');
           return;
         }
-        const response = await axios.post('http://localhost:3001/user/profile', {}, {
+        const response = await axios.post('http://localhost:3001/api/v1/user/profile', {}, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
