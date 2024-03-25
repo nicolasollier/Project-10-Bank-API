@@ -18,14 +18,14 @@ const Nav = () => {
 
   return (
     <nav className="main-nav">
-      <a className="main-nav-logo" href="/">
+      <Link className="main-nav-logo" to="/">
         <img
           className="main-nav-logo-image"
           src={logo}
           alt="Argent Bank Logo"
         />
         <h1 className="sr-only">Argent Bank</h1>
-      </a>
+      </Link>
 
       {isAuthenticated ? (
         <div id="main-nav-item-wrapper">
@@ -43,7 +43,7 @@ const Nav = () => {
         <div>
           <Link className="main-nav-item" to="/signin">
             <i className="fa fa-user"></i>
-            Sign In
+            Sign In (rebuild success)
           </Link>
         </div>
       )}
